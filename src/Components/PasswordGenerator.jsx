@@ -143,7 +143,7 @@ export default function PasswordGenerator() {
 
         <div className="buttons">
             <button type="button" onClick={generatePassword}>Generate Password</button>
-            <button type="button" onClick={generatePassword}>Generate Password</button>
+            <button type="button" onClick={copyPassword}>Copy Password</button>
         </div>
       </div>
       <ToastContainer />
