@@ -10,7 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    background-color: #f58a07;
+    color: black;
+    /* background-color: #f58a07; */
+    background-color: var(--bodycolor);
 }
 
