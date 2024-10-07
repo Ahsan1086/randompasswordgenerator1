@@ -20,6 +20,8 @@ export default function PasswordGenerator() {
     const [symbols,setsymbols]=useState(true)
     const [pwdlength,setpwdlength]=useState("8")
     const [selectedChoices,setselectedChoices]=useState(['lowercase','uppercase','symbols','numbers'])
+    const [theme,settheme]=useState("Dark Theme")
+    const [themeclass,setthemeclass]=useState("light-theme")
 
     function generatePassword(){
         let characterList=''
@@ -50,8 +52,8 @@ export default function PasswordGenerator() {
     //     navigator.clipboard.writeText(password);
     // })}
     const copyPassword =async () => {
-        const copiedText= await navigator.clipboard.readText();
-        if(password.length && copiedText!==password){
+        // const copiedText= await navigator.clipboard.readText();
+        // if(password.length && copiedText!==password){
             navigator.clipboard.writeText(password)
             toast.success('Password copied to clipboard', {
                 position: "top-center",
@@ -63,7 +65,7 @@ export default function PasswordGenerator() {
                 progress: undefined,
                 theme: "light",
                 });
-        }
+        // }
     }
 
     // useEffect(()=>{
@@ -87,6 +89,24 @@ export default function PasswordGenerator() {
         setselectedChoices(tempChoices)
 
     }
+    function changeTheme(){
+        if(themeclass==="light-theme"){
+            setthemeclass("dark-theme")
+            // document.querySelector("body").className="dark-theme";
+            settheme("Light Theme")
+            
+        }else{
+            setthemeclass("light-theme")
+            settheme("Dark Theme")
+            // document.querySelector("body").className="light-theme";
+        }
+    
+    }
+
+
+    useEffect(()=>{
+        document.querySelector("body").className=themeclass;
+    },[theme])
 
   return (
     <>
@@ -142,8 +162,8 @@ export default function PasswordGenerator() {
         </div>
 
         <div className="buttons">
+            <button type="button" onClick={changeTheme}>{theme}</button>
             <button type="button" onClick={generatePassword}>Generate Password</button>
-            <button type="button" onClick={copyPassword}>Copy Password</button>
         </div>
       </div>
       <ToastContainer />
